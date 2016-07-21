@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:49:16 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/20 17:51:04 by rojones          ###   ########.fr       */
+/*   Updated: 2016/07/21 08:33:25 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,13 @@ char	**ft_unsetenv(char **split, char **env)
 		return (NULL);
 	}
 	rm = ft_check_env_var(split[1], env);
-	re = ft_rm_env_var(env, rm);
-	if (re == NULL)
-		return (env);
-	ft_free_str_arr(env);
-	return (re);
+	if (rm != -1)
+	{
+		re = ft_rm_env_var(env, rm);
+		if (re == NULL)
+			return (env);
+		ft_free_str_arr(env);
+		return (re);
+	}
+	return (env);
 }

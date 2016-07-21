@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 13:51:03 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/20 17:50:23 by rojones          ###   ########.fr       */
+/*   Updated: 2016/07/21 07:40:56 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char		*ft_search_path(char **args, char **env)
 		i = 0;
 		while (spath[i] && path == NULL)
 		{
-			printf("searching path |%s|\n", spath[i]);
 			path = ft_check_exe_path(spath[i], args[0]);
 			i++;
 		}
