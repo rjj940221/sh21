@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 11:50:00 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/23 13:48:41 by rojones          ###   ########.fr       */
+/*   Updated: 2016/07/23 16:01:34 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int			main(int ac, char **av)
 	{
 		ft_prompt(oflag, env);
 		get_next_line(0, &line);
+		line = ft_check_qut(line);
 		if (line[0] != '\0')
 		{   
 			env = ft_split_input(line, env);

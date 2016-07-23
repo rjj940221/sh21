@@ -6,7 +6,7 @@
 #    By: rojones <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/28 08:54:36 by rojones           #+#    #+#              #
-#    Updated: 2016/07/23 13:56:38 by rojones          ###   ########.fr        #
+#    Updated: 2016/07/23 15:57:53 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,10 @@ OBJ = ft_arglen.o ft_build_env_var.o ft_cd.o ft_cd_home.o ft_cd_opwd.o \
 	  ft_check_dir.o ft_check_env_var.o ft_count_arg.o ft_cpyenv.o ft_echo.o \
 	  ft_echo_env_var.o ft_echo_str.o ft_env.o ft_echo_case.o \
 	  ft_exc_cd.o ft_exit.o ft_extract_arg.o ft_extract_args.o \
-	  ft_free_str_arr.o ft_get_comm.o ft_get_env_var.o ft_launch.o \
-	  ft_pwd_var.o ft_num_args.o ft_search_path.o ft_setenv.o \
-	  ft_skip_spaces.o ft_split_input.o ft_unsetenv.o ft_update_env_pwd.o
+	  ft_free_str_arr.o ft_get_comm.o ft_get_env_var.o ft_get_qut.o \
+	  ft_launch.o ft_pwd_var.o ft_num_args.o ft_search_path.o ft_setenv.o \
+	  ft_skip_spaces.o ft_split_input.o ft_str_qut_char.o \
+	  ft_unsetenv.o ft_update_env_pwd.o
 MAKELIB = make -C libft
 MAKELIBCLEAN = make -C libft clean
 
@@ -112,6 +113,9 @@ ft_get_comm.o : ft_get_comm.c
 ft_get_env_var.o : ft_get_env_var.c
 	$(CCFLAGS) -c ft_get_env_var.c
 
+ft_get_qut.o : ft_get_qut.c
+	$(CCFLAGS) -c ft_get_qut.c
+
 ft_search_path.o : ft_search_path.c
 	$(CCFLAGS) -c ft_search_path.c
 
@@ -123,6 +127,9 @@ ft_skip_spaces.o : ft_skip_spaces.c
 
 ft_split_input.o : ft_split_input.c
 	$(CCFLAGS) -c ft_split_input.c
+
+ft_str_qut_char.o : ft_str_qut_char.c
+	$(CCFLAGS) -c ft_str_qut_char.c
 
 ft_unsetenv.o : ft_unsetenv.c
 	$(CCFLAGS) -c ft_unsetenv.c

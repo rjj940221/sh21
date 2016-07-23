@@ -6,20 +6,18 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 09:41:54 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/23 13:49:57 by rojones          ###   ########.fr       */
+/*   Updated: 2016/07/23 17:54:31 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-char	**ft_get_comm(char *line, char **env)
+static char	**ft_exe_comm(char *line, char **env)
 {
-	char	*comm;
 	char	**split;
 
 	split = ft_extract_args(line);
-	comm = split[0];
-	if (comm)
+	if (split[0])
 	{
 		if (strcmp(split[0], "exit") == 0)
 			ft_exit(split, env);
@@ -39,4 +37,9 @@ char	**ft_get_comm(char *line, char **env)
 	if (split)
 		ft_free_str_arr(split);
 	return (env);
+}
+
+char    **ft_get_comm(char *line, char **env)
+{
+	return (ft_exe_comm(line, env));
 }

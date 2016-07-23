@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_input.c                                   :+:      :+:    :+:   */
+/*   ft_str_qut_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/22 12:49:21 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/23 15:24:16 by rojones          ###   ########.fr       */
+/*   Created: 2016/07/23 15:22:14 by rojones           #+#    #+#             */
+/*   Updated: 2016/07/23 15:53:39 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-char	**ft_split_input(char *line, char **env)
+char	*ft_str_qut_char(char *str, char c)
 {
-	char	*col;
-	char	*mv;
-	char	*temp;
+	int i;
+	int	qut;
 
-	mv = line;
-	while ((col = ft_str_qut_char(mv, ';')) != NULL)
+	i = 0;
+	qut = 0;
+	while(str[i] != '\0')
 	{
-		temp = ft_strsub(mv, 0 , (int)(col - mv));
-		if (temp)
-		{
-			env = ft_get_comm(temp, env);
-			free(temp);
-		}
-		mv = col + 1;
+		 if (i == 0 && str[i] == '"')
+			qut = 1;
+		if (str[i] == '"' && i > 0 && str[i - 1] != '\\')
+			qut = (qut == 0) ? 1 : 0;
+		if (str[i] == c && qut == 0)
+			return (&str[i]);
+		i++;
 	}
-	env = ft_get_comm(mv, env);
-	return (env);
+	return (NULL);
 }

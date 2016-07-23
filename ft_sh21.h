@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/23 13:55:23 by rojones          ###   ########.fr       */
+/*   Updated: 2016/07/23 16:01:57 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ typedef struct	s_echo_flag
 	int	set_e;
 }				t_echo_flag;
 
+typedef struct	s_pipe_redir
+{
+	int	re;
+	int	pipe;
+	int	reapp;
+}				t_pipe_redir;
+
 int				ft_arglen(char *s, int *start);
 char			*ft_build_env_var(char **split);
 char			**ft_cd(char **args, char **env);
@@ -29,6 +36,7 @@ void			ft_cd_opwd(char **env);
 void			ft_check_arg_case_len(char *line, int *qut, int *i);
 int				ft_check_dir(char *path, char *name);
 int				ft_check_env_var(char *arg, char **env);
+char			*ft_check_qut(char *line);
 int				ft_count_arg(char **args);
 char			**ft_cpyenv(char **env);
 void			ft_echo(char **args, char **env);
@@ -50,6 +58,7 @@ char			*ft_search_path(char **args, char **env);
 char			**ft_setenv(char **split, char **env);
 void			ft_skip_space(char *line, int *i);
 char			**ft_split_input(char *line, char **env);
+char			*ft_str_qut_char(char *str, char c);
 char			*ft_sub_arg(char *line, int start, int end);
 char			**ft_unsetenv(char **split, char **env);
 void			ft_update_pwd_env(char **env, char **value, int i);
