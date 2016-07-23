@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minishell.c                                     :+:      :+:    :+:   */
+/*   ft_sh21.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/28 08:43:18 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/20 17:52:08 by rojones          ###   ########.fr       */
+/*   Created: 2016/07/21 11:50:00 by rojones           #+#    #+#             */
+/*   Updated: 2016/07/23 13:48:41 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,9 @@ int			main(int ac, char **av)
 		ft_prompt(oflag, env);
 		get_next_line(0, &line);
 		if (line[0] != '\0')
-		{
-			if (strcmp(line, "exit") == 0)
-				exit(0);
-			else
-				env = ft_get_comm(line, env);
-		}
+		{   
+			env = ft_split_input(line, env);
+		}   
 		if (line)
 			free(line);
 	}

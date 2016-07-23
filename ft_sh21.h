@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/09 11:35:09 by rojones          ###   ########.fr       */
+/*   Updated: 2016/07/23 13:55:23 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char			ft_echo_case(char *str, int *i);
 int				ft_echo_env_var(char **env, char *arg);
 int				ft_echo_str(char *str);
 void			ft_exc_cd(char *path, char **env);
+void			ft_exit(char **split, char **env);
 char			**ft_extract_args(char *line);
 char			*ft_extract_arg(int len, int start, int *end, char *line);
 void			ft_free_str_arr(char **arr);
@@ -48,6 +49,7 @@ char			*ft_pwd_var(char *pwd, char *value);
 char			*ft_search_path(char **args, char **env);
 char			**ft_setenv(char **split, char **env);
 void			ft_skip_space(char *line, int *i);
+char			**ft_split_input(char *line, char **env);
 char			*ft_sub_arg(char *line, int start, int end);
 char			**ft_unsetenv(char **split, char **env);
 void			ft_update_pwd_env(char **env, char **value, int i);
