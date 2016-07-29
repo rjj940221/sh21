@@ -1,38 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cpyenv.c                                        :+:      :+:    :+:   */
+/*   ft_check_arg_op.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/28 14:40:46 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/28 15:07:16 by rojones          ###   ########.fr       */
+/*   Created: 2016/07/25 16:37:32 by rojones           #+#    #+#             */
+/*   Updated: 2016/07/25 17:27:07 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-char	**ft_cpyenv(char **env)
+int	ft_check_arg_op(char *str)
 {
-	char	**re;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	re = NULL;
-	while (env[i])
-		i++;
-	if (!(re = (char **)malloc(sizeof(char *) * (i + 1))))
-	{
-		ft_putstr("copy_env Memory allocation failed.");
-		return (NULL);
-	}
-	while (env[j])
-	{
-		re[j] = strdup(env[j]);
-		j++;
-	}
-	re[j] = NULL;
-	return (re);
+	if (ft_strcmp(">", str) == 0 || ft_strcmp(">>", str) == 0||
+			ft_strcmp("<", str) == 0|| ft_strcmp("<<", str) == 0||
+			ft_strcmp("|", str) == 0)
+		return (1);
+	return (0);
 }
