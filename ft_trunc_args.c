@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_input.c                                   :+:      :+:    :+:   */
+/*   ft_trunc_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/22 12:49:21 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/29 12:10:16 by rojones          ###   ########.fr       */
+/*   Created: 2016/07/25 16:40:34 by rojones           #+#    #+#             */
+/*   Updated: 2016/07/28 15:10:14 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-char	**ft_split_input(char *line, char **env)
+char **ft_trunc_args(char **args)
 {
-	char	*col;
-	char	*mv;
-	char	*temp;
+	int i;
+	int j;
+	char	**re;
 
-	mv = line;
-	while ((col = ft_str_qut_char(mv, ';')) != NULL)
+	i = 0;
+	j = 0;
+	while (args[i] && ft_check_arg_op(args[i]) == 0)
+		i++;
+	if (!(re = (char**)malloc(sizeof(char*) * (i + 1))))
 	{
-		temp = ft_strsub(mv, 0 , (int)(col - mv));
-		if (temp)
-		{
-			env = ft_launch(temp, env);
-			free(temp);
-		}
-		mv = col + 1;
+		ft_putstr("maloc failed");
+		return (args);
 	}
-	env = ft_launch(mv, env);
-	return (env);
+	
+	while (j < i && args[j])
+	{
+		re[j] = strdup(args[j]);
+		j++;
+	}
+	re[j] = NULL;
+	return (re);
 }

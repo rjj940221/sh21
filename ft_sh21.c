@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 11:50:00 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/23 16:01:34 by rojones          ###   ########.fr       */
+/*   Updated: 2016/07/25 16:56:08 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,3 +94,21 @@ int			main(int ac, char **av)
 			free(line);
 	}
 }
+
+/*int	main()
+  {
+  char        *line;
+  char		**split;
+
+  get_next_line(0, &line);
+  line = ft_check_qut(line);
+  if (line[0] != '\0')
+  {
+  split = ft_extract_args(line);
+  while (*split)
+  {
+  puts(*split);
+  split++;
+  }
+  }
+  }*/

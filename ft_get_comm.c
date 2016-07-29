@@ -6,17 +6,17 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 09:41:54 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/23 17:54:31 by rojones          ###   ########.fr       */
+/*   Updated: 2016/07/29 15:42:05 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-static char	**ft_exe_comm(char *line, char **env)
+char    **ft_get_comm(char **split, char **env)
 {
-	char	**split;
+	char	*path;
 
-	split = ft_extract_args(line);
+	path = NULL;
 	if (split[0])
 	{
 		if (strcmp(split[0], "exit") == 0)
@@ -31,15 +31,12 @@ static char	**ft_exe_comm(char *line, char **env)
 			env = ft_unsetenv(split, env);
 		else if (strcmp(split[0], "env") == 0)
 			ft_env(split, env);
-		else if (ft_launch(split, env) == 0)
+		else if ((path = ft_search_path(split, env)) != NULL)
+			execve(path, split, env);
+		else
 			ft_printf("command not found: %s\n", split[0]);
+		if (path)
+			free(path);
 	}
-	if (split)
-		ft_free_str_arr(split);
 	return (env);
-}
-
-char    **ft_get_comm(char *line, char **env)
-{
-	return (ft_exe_comm(line, env));
 }

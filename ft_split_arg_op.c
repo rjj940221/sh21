@@ -1,42 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_extract_args.c                                  :+:      :+:    :+:   */
+/*   ft_split_arg_op.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/01 16:30:38 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/25 13:45:36 by rojones          ###   ########.fr       */
+/*   Created: 2016/07/28 08:39:11 by rojones           #+#    #+#             */
+/*   Updated: 2016/07/28 15:07:49 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-char	**ft_extract_args(char *line)
+char ***ft_split_arg_op(char **args)
 {
-	char	**re;
+	char 	***re;
+	char	**rem;
+	char	**rem2;
 	int		i;
-	int		mv;
-	int		numargs;
-	int		argindex;
+	int 	j;
 
-	numargs = ft_num_args(line);
-	argindex = 0;
-	if (!(re = (char **)malloc(sizeof(char*) * (numargs + 1))))
-	{
-		ft_putstr("extract arg malloc failer");
+	i = -1;
+	j = 0;
+	while (args[++i])
+		if (ft_check_arg_op(args[i]))
+			j++;
+	j++;
+	if (!(re = (char***)malloc(sizeof(char**) * (j + 1))))
 		return (NULL);
-	}
-	i = 0;
-	while (ft_isspace(line[i]) == 1)
-		i++;
-	while (argindex < numargs)
+	i = -1;
+	rem = ft_cpyenv(args);
+	while (++i < j)
 	{
-		mv = i;
-		re[argindex] = ft_extract_arg(ft_arglen(line, &mv), i, &mv, line);
-		argindex++;
-		i = mv;
+		if (rem)
+		{
+			re[i] = ft_trunc_args(rem);
+			rem2 = ft_cpyenv(rem);
+
+			ft_free_str_arr(rem);
+			rem = ft_rem_args(rem2);
+			if (rem2)
+				ft_free_str_arr(rem2);
+		}
 	}
-	re[argindex] = NULL;
+	re[i] = NULL;
 	return (re);
 }

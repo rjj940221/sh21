@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_input.c                                   :+:      :+:    :+:   */
+/*   ft_isop.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/22 12:49:21 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/29 12:10:16 by rojones          ###   ########.fr       */
+/*   Created: 2016/07/25 13:23:06 by rojones           #+#    #+#             */
+/*   Updated: 2016/07/29 14:08:47 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-char	**ft_split_input(char *line, char **env)
+int	ft_isop(char c)
 {
-	char	*col;
-	char	*mv;
-	char	*temp;
-
-	mv = line;
-	while ((col = ft_str_qut_char(mv, ';')) != NULL)
-	{
-		temp = ft_strsub(mv, 0 , (int)(col - mv));
-		if (temp)
-		{
-			env = ft_launch(temp, env);
-			free(temp);
-		}
-		mv = col + 1;
-	}
-	env = ft_launch(mv, env);
-	return (env);
+	if ( c == '|')
+		return (1);
+	if (c == '>' || c == '<' )
+		return (2);
+	return (0);
 }
