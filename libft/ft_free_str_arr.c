@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 10:03:31 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/19 13:34:34 by rojones          ###   ########.fr       */
+/*   Updated: 2016/07/28 12:23:47 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_free_str_arr(char **arr)
 {
-	char	*temp;
 	int		i;
 
 	if (arr)
@@ -22,13 +21,12 @@ void	ft_free_str_arr(char **arr)
 		i = 0;
 		while (arr[i] != NULL)
 		{
-			temp = arr[i];
-			if (temp)
-				free(temp);
+			if (arr[i])
+				free(arr[i]);
 			arr[i] = NULL;
 			i++;
 		}
-		if (arr)
-			free(arr);
+		free(arr);
+		arr = NULL;
 	}
 }
